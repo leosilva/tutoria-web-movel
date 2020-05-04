@@ -11,6 +11,17 @@ module.exports = {
     return response.json(productList);
   },
 
+  async findById(request, response) {
+    const idObtido = request.params.id;
+    const [product] = await connection("product")
+      .select("*")
+      .where({
+        id: idObtido
+      });
+
+    return response.json(product);
+  },
+
   async update(request, response) {
     const idParametro = request.params.id;
     await connection("product")
