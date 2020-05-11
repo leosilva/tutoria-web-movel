@@ -1,4 +1,6 @@
 const connection = require("../database/connection");
+const { attachPaginate } = require("knex-paginate");
+attachPaginate();
 
 module.exports = {
   async save(request, response) {
@@ -7,7 +9,14 @@ module.exports = {
   },
 
   async list(request, response) {
-    const productList = await connection("product").select("*");
+    const { page = 1 } = request.query;
+    const productList = await connection("product")
+      .select("*")
+      .paginate({
+        perPage: 5,
+        currentPage: page,
+        isLengthAware: true
+      });
     return response.json(productList);
   },
 
