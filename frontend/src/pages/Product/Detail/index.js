@@ -34,6 +34,10 @@ export default function ProductDetail(props) {
     loadProduct();
   });
 
+  function updateProduct() {
+    history.push(`/product/update`, product);
+  }
+
   return (
     <div className="product-info">
       <h1>{product.nome}</h1>
@@ -41,7 +45,12 @@ export default function ProductDetail(props) {
       <p>{product.descricao}</p>
       <div className="actions">
         <button onClick={back}>Voltar</button>
-        <button className="delete" onClick={deleteProduct}>Delete</button>
+        <div>
+          <button onClick={updateProduct}>Editar</button>
+          <button className="delete" onClick={deleteProduct}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
