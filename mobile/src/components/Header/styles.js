@@ -18,5 +18,15 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: '#fff'
+    },
+
+    backIconContainer: {
+        height: 60,
+        paddingLeft: 20,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        marginBottom: -60,
+        zIndex: 1,
+        position: 'relative'
     }
 });

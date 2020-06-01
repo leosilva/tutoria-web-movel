@@ -1,24 +1,58 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {View, Text, TouchableOpacity, FlatList} from "react-native";
 import Header from "../../components/Header";
 
 import styles from "./styles";
+import api from "../../services/api";
 
-export default function Main() {
+export default function Main({navigation}) {
+    const [products, setProducts] = useState([]);
+    const [productInfo, setProductInfo] = useState({});
+    const [page, setPage] = useState(1);
+
+    async function loadProducts(page) {
+        await api
+        .get("/", {
+            params: { page }
+        })
+        .then(response => {
+            setProducts([...products, ...response.data.data]);
+            setProductInfo(response.data.pagination);
+            setPage(parseInt(response.data.pagination.currentPage, 10));
+        });
+
+    }
+
+    useEffect(() => {
+        loadProducts(1);
+    }, []);
+
+    function loadMore() {
+        if (page === productInfo.lastPage) {
+            return
+        }
+
+        const pageNumber = parseInt(page, 10) + 1;
+        loadProducts(pageNumber);
+    }
+
     return (
         <View>
             <Header />
             <FlatList 
+                contentContainerStyle={{paddingBottom: 130}}
                 style={styles.productList}
-                data={[1,2,3,4,5,6,7]}
+                data={products}
                 showsVerticalScrollIndicator={false}
-                keyExtractor={incident => String(incident)}
-                renderItem={() => {
+                keyExtractor={products => String(products.id)}
+                onEndReached={loadMore}
+                onEndReachedThreshold={0.1}
+                renderItem={({item}) => {
                     return (
                         <View style={styles.product}>
-                            <Text style={styles.productName}>Fanta Laranja</Text>
-                            <Text style={styles.productType}>Refrigerante</Text>
-                            <TouchableOpacity style={styles.detailButton} onPress={() => {}}>
+                            <Text style={styles.productName}>{item.nome}</Text>
+                            <Text style={styles.productType}>{item.tipo}</Text>
+                            <TouchableOpacity style={styles.detailButton} onPress={() => {navigation.navigate("Detail", {product: item})}}>
                                 <Text style={styles.detailButtonText}>Acessar</Text>
                             </TouchableOpacity>
                         </View>
