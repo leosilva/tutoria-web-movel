@@ -24,8 +24,11 @@ export default function Main({navigation}) {
     }
 
     useEffect(() => {
-        loadProducts(1);
-    }, []);
+        const unsubscribe = navigation.addListener('focus', () => {
+            loadProducts(page);
+        });
+        return unsubscribe;
+    }, [navigation]);
 
     function loadMore() {
         if (page === productInfo.lastPage) {
@@ -38,7 +41,7 @@ export default function Main({navigation}) {
 
     return (
         <View>
-            <Header />
+            <Header navigation={navigation} />
             <FlatList 
                 contentContainerStyle={{paddingBottom: 130}}
                 style={styles.productList}

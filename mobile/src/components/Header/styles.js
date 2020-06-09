@@ -28,5 +28,15 @@ export default StyleSheet.create({
         marginBottom: -60,
         zIndex: 1,
         position: 'relative'
+    },
+
+    newIconContainer: {
+        height: 60,
+        paddingRight: 20,
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        marginTop: -60,
+        zIndex: 1,
+        position: 'relative'
     }
 });

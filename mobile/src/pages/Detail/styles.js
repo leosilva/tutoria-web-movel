@@ -29,5 +29,55 @@ export default StyleSheet.create({
         fontSize: 16,
         lineHeight: 24,
         marginTop: 5
+    },
+
+    actions: {
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+        marginBottom: 20,
+        marginRight: 20
+    },
+
+    trashIcon: {
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderColor: "#da552f",
+        borderRadius: 5,
+        padding: 10        
+    },
+
+    overlay: {
+        height: 110,
+        width: '70%',
+        justifyContent: 'center'
+    },
+
+    overlayActions: {
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    overlayQuestion: {
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+
+    overlayButton: {
+        height: 50,
+        width: 115,
+        borderStyle: 'solid',
+        borderColor: '#da552f',
+        borderRadius: 5,
+        borderWidth: 2,
+        padding: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    overlayButtonText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: "#da552f"
     }
 });
