@@ -35,7 +35,16 @@ export default StyleSheet.create({
         justifyContent: "flex-end",
         alignItems: "flex-end",
         marginBottom: 20,
-        marginRight: 20
+        marginRight: 20,
+        flexDirection: "row"
+    },
+
+    editIcon: {
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderColor: "#da552f",
+        borderRadius: 5,
+        padding: 10
     },
 
     trashIcon: {
@@ -43,7 +52,8 @@ export default StyleSheet.create({
         borderWidth: 2,
         borderColor: "#da552f",
         borderRadius: 5,
-        padding: 10        
+        padding: 10,
+        marginLeft: 10
     },
 
     overlay: {

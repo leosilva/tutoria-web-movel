@@ -21,6 +21,10 @@ export default function Detail({route, navigation}) {
         navigation.navigate("Main");
     }
 
+    function editProduct() {
+        navigation.navigate("Update", {product: route.params.product});
+    }
+
     return (
         <View>
             <Header navigation={navigation}/>
@@ -30,6 +34,14 @@ export default function Detail({route, navigation}) {
                 <Text style={styles.productDescription}>{route.params.product.descricao}</Text>
             </View>
             <View style={styles.actions}>
+                <Icon 
+                    name="edit"
+                    color="#da552f"
+                    type="feather"
+                    size={24}
+                    iconStyle={styles.editIcon}
+                    onPress={editProduct}
+                />
                 <Icon
                     name="trash-2"
                     color="#da552f"
